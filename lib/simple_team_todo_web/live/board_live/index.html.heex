@@ -1,0 +1,8 @@
+<div>coucou</div>
+
+<%= for project <- @projects do %>
+  <div><%= project.id %> <%= project.name %></div>
+  <%= live_redirect "Name", to: Routes.board_project_path(@socket, :index, project.id) %>
+<% end %>
+
+<button phx-click="event-clicked" >Coucou</button>

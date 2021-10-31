@@ -1,0 +1,10 @@
+<div>Project : <%= @project.name %></div>
+<div>desc : <%= @project.desc %></div>
+<div>Tasks : </div>
+<div>
+  <%= for task <- @tasks do %>
+    <div><%= task.name %></div>
+  <% end %>
+</div>
+
+<button phx-click="event-clicked" >Coucou</button>
