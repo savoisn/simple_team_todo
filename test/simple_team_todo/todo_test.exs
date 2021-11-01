@@ -4,6 +4,8 @@ defmodule SimpleTeamTodo.TodoTest do
   alias SimpleTeamTodo.Todo
   import SimpleTeamTodo.AccountsFixtures
 
+  import Assertions
+
   describe "projects" do
     alias SimpleTeamTodo.Todo.Project
 
@@ -72,6 +74,16 @@ defmodule SimpleTeamTodo.TodoTest do
     test "list_tasks/0 returns all tasks" do
       task = task_fixture()
       assert Todo.list_tasks() == [task]
+    end
+
+    test "list_tasks_by_project/1 returns all tasks" do
+      {
+        %{id: p1, tasks: [task1, task2]},
+        %{id: p2, tasks: [task3, task4, task5]}
+      } = task_and_project_fixture()
+
+      assert_lists_equal(Todo.list_tasks_by_project(p1), [task1, task2])
+      assert_lists_equal(Todo.list_tasks_by_project(p2), [task3, task4, task5])
     end
 
     test "get_task!/1 returns the task with given id" do

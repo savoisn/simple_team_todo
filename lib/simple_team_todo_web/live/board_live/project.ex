@@ -8,20 +8,8 @@ defmodule SimpleTeamTodoWeb.BoardLive.Project do
 
     project = Todo.get_project!(id)
 
-    tasks = [
-      %Todo.Task{name: "task1", desc: "desc1"},
-      %Todo.Task{name: "task2", desc: "desc2"}
-    ]
+    tasks = Todo.list_tasks_by_project(project.id)
 
     {:ok, assign(socket, %{project: project, tasks: tasks})}
   end
-
-  # def handle_event("event-clicked", _, socket) do
-  # Logger.info("clicked")
-  # {:noreply, socket}
-  # end
-
-  # def handle_params(params, _uri, socket) do
-  # {:noreply, socket}
-  # end
 end

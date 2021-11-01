@@ -2,9 +2,20 @@
 <div>desc : <%= @project.desc %></div>
 <div>Tasks : </div>
 <div>
-  <%= for task <- @tasks do %>
-    <div><%= task.name %></div>
-  <% end %>
+  <table>
+    <thead>
+      <th>Task</th>
+      <th>Detail</th>
+      <th>Actions</th>
+    </thead>
+    <%= for task <- @tasks do %>
+    <tr>
+      <td><%= task.name %></td>
+      <td><%= task.desc %></td>
+      <td><button phx-click="add-child">append child</button></td>
+    </tr>
+    <% end %>
+  </table>
 </div>
 
 <button phx-click="event-clicked" >Coucou</button>

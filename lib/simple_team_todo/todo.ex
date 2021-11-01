@@ -118,6 +118,23 @@ defmodule SimpleTeamTodo.Todo do
   end
 
   @doc """
+  Returns the list of tasks.
+
+  ## Examples
+
+      iex> list_tasks_by_project()
+      [%Task{}, ...]
+
+  """
+  def list_tasks_by_project(project_id) do
+    query =
+      from t in Task,
+        where: t.project == ^project_id
+
+    Repo.all(query)
+  end
+
+  @doc """
   Gets a single task.
 
   Raises `Ecto.NoResultsError` if the Task does not exist.
