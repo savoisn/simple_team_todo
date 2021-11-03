@@ -1,5 +1,10 @@
 /* This file is for your main application CSS */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 @import "./phoenix.css";
+
 
 /* Alerts and form errors used by phx.new */
 .alert {
@@ -33,6 +38,10 @@
   color: #a94442;
   display: block;
   margin: -1rem 0 2rem;
+}
+
+.task-action {
+  cursor: pointer;
 }
 
 /* LiveView specific classes for your customization */

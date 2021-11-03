@@ -1,3 +1,11 @@
+<%= if @live_action in [:create] do %>
+  <%= live_modal SimpleTeamTodoWeb.BoardLive.TaskFormComponent,
+    id: @task.id || :new,
+    title: @page_title,
+    action: @live_action,
+    task: @task,
+    return_to: Routes.board_project_path(@socket, :index, @project.id) %>
+<% end %>
 <div>Project : <%= @project.name %></div>
 <div>desc : <%= @project.desc %></div>
 <div>Tasks : </div>
@@ -12,7 +20,11 @@
     <tr>
       <td><%= task.name %></td>
       <td><%= task.desc %></td>
-      <td><button phx-click="add-child">append child</button></td>
+      <td>
+        <%= live_patch to: Routes.board_project_path(@socket, :create, @project.id, task.id) do %>
+          <i class="fas fa-reply fa-rotate-180"></i>
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </table>

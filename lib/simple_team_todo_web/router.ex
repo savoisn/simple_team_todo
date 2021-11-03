@@ -82,6 +82,7 @@ defmodule SimpleTeamTodoWeb.Router do
     resources "/tasks", TaskController
     live "/boards", BoardLive.Index, :index
     live "/boards/:id", BoardLive.Project, :index
+    live "/boards/:id/create/:taskid", BoardLive.Project, :create
   end
 
   scope "/", SimpleTeamTodoWeb do
