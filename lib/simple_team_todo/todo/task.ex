@@ -9,8 +9,7 @@ defmodule SimpleTeamTodo.Todo.Task do
     field :creator, :id
     field :owner, :id
     field :parent, :id
-    field :previous_child, :id
-    field :next_child, :id
+    field :order_id, :decimal
     timestamps()
   end
 
@@ -24,8 +23,7 @@ defmodule SimpleTeamTodo.Todo.Task do
       :owner,
       :creator,
       :parent,
-      :previous_child,
-      :next_child
+      :order_id
     ])
     |> validate_required([:name, :desc, :project, :owner, :creator])
   end

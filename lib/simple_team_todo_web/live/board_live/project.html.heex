@@ -12,12 +12,14 @@
 <div>
   <table>
     <thead>
+      <th>Id</th>
       <th>Task</th>
       <th>Detail</th>
       <th>Actions</th>
     </thead>
     <%= for task <- @tasks do %>
     <tr>
+      <td><%= task.id %></td>
       <td><%= task.name %></td>
       <td><%= task.desc %></td>
       <td>

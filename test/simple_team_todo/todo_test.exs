@@ -140,5 +140,11 @@ defmodule SimpleTeamTodo.TodoTest do
       task = task_fixture()
       assert %Ecto.Changeset{} = Todo.change_task(task)
     end
+
+    test "add child task to task" do
+      [task1, task2, task3] = task_with_child()
+      assert task2.parent == task1.id
+      assert task3.parent == task1.id
+    end
   end
 end
