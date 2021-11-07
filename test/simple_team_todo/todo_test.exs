@@ -146,5 +146,8 @@ defmodule SimpleTeamTodo.TodoTest do
       assert task2.parent == task1.id
       assert task3.parent == task1.id
     end
+    test "task list in the user define order" do
+      task = Todo.order_list()
+    end
   end
 end
