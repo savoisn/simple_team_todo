@@ -1,5 +1,4 @@
-<div>coucou</div>
-
+<div>Project List</div>
 <%= for project <- @projects do %>
   <div><%= project.id %> <%= project.name %></div>
   <%= live_redirect "Name", to: Routes.board_project_path(@socket, :index, project.id) %>

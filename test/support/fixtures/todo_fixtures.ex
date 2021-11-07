@@ -47,7 +47,52 @@ defmodule SimpleTeamTodo.TodoFixtures do
   end
 
   @doc """
-  Generate a task.
+  Generate a task with 2 child.
+  """
+  def task_with_child(attrs \\ %{}) do
+    user = user_fixture()
+    project1 = project_fixture()
+
+    {:ok, task1} =
+      attrs
+      |> Enum.into(%{
+        desc: "some desc1",
+        name: "some name1",
+        project: project1.id,
+        creator: user.id,
+        owner: user.id
+      })
+      |> SimpleTeamTodo.Todo.create_task()
+
+    {:ok, task2} =
+      attrs
+      |> Enum.into(%{
+        desc: "some desc2",
+        name: "some name2",
+        project: project1.id,
+        creator: user.id,
+        owner: user.id,
+        parent: task1.id
+      })
+      |> SimpleTeamTodo.Todo.create_task()
+
+    {:ok, task3} =
+      attrs
+      |> Enum.into(%{
+        desc: "some desc3",
+        name: "some name3",
+        project: project1.id,
+        creator: user.id,
+        owner: user.id,
+        parent: task1.id
+      })
+      |> SimpleTeamTodo.Todo.create_task()
+
+    [task1, task2, task3]
+  end
+
+  @doc """
+  Generate a 5 tasks in 2 different projects.
   """
   def task_and_project_fixture(attrs \\ %{}) do
     user = user_fixture()

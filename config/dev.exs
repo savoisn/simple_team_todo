@@ -25,7 +25,20 @@ config :simple_team_todo, SimpleTeamTodoWeb.Endpoint,
   secret_key_base: "bC+DylsvAEh6X5J40A2JnZ4hgCu80cbmS/iJ7SeuXaC4GmnXIwCfAZxphpoVhNuF",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild:
+      {Esbuild, :install_and_run,
+       [
+         :default,
+         ~w(--sourcemap=inline --watch --loader:.ttf=dataurl --loader:.woff2=dataurl --loader:.woff=dataurl)
+       ]},
+    npx: [
+      "tailwindcss",
+      "--input=css/app.css",
+      "--output=../priv/static/assets/app.css",
+      "--postcss",
+      "--watch",
+      cd: Path.expand("../assets", __DIR__)
+    ]
   ]
 
 # ## SSL Support

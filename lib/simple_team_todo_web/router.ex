@@ -77,11 +77,12 @@ defmodule SimpleTeamTodoWeb.Router do
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
-    resources "/users", UserController
+    # resources "/users", UserController ## will break user_authent tests...
     resources "/projects", ProjectController
     resources "/tasks", TaskController
     live "/boards", BoardLive.Index, :index
     live "/boards/:id", BoardLive.Project, :index
+    live "/boards/:id/create/:taskid", BoardLive.Project, :create
   end
 
   scope "/", SimpleTeamTodoWeb do

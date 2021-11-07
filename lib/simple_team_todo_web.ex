@@ -82,6 +82,7 @@ defmodule SimpleTeamTodoWeb do
       use Phoenix.HTML
 
       # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
+      import SimpleTeamTodoWeb.LiveHelpers
       import Phoenix.LiveView.Helpers
 
       # Import basic rendering functionality (render, render_layout, etc)
