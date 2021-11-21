@@ -1,5 +1,5 @@
 defmodule SimpleTeamTodoWeb.TaskControllerTest do
-  use SimpleTeamTodoWeb.ConnCase
+  use SimpleTeamTodoWeb.ConnCase, async: true
 
   import SimpleTeamTodo.TodoFixtures
 

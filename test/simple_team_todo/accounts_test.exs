@@ -1,5 +1,5 @@
 defmodule SimpleTeamTodo.AccountsTest do
-  use SimpleTeamTodo.DataCase
+  use SimpleTeamTodo.DataCase, async: true
 
   alias SimpleTeamTodo.Accounts
 

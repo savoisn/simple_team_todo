@@ -1,13 +1,14 @@
 defmodule SimpleTeamTodoWeb.BoardLive.Project do
   use SimpleTeamTodoWeb, :live_view
   alias SimpleTeamTodo.Todo
+  alias SimpleTeamTodoUseCase.Todo.TaskUseCase, as: TaskUC
   alias SimpleTeamTodo.Todo.Task
   require Logger
 
   def mount(%{"id" => id}, _session, socket) do
     Logger.info(id)
     project = Todo.get_project!(id)
-    tasks = Todo.list_tasks_by_project(project.id)
+    tasks = TaskUC.get_tasks_by_project_sorted_by_user_pref(project)
     {:ok, assign(socket, %{project: project, tasks: tasks})}
   end
 
