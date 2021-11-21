@@ -231,4 +231,13 @@ defmodule SimpleTeamTodo.Todo do
   def change_task(%Task{} = task, attrs \\ %{}) do
     Task.changeset(task, attrs)
   end
+
+  def project_tasks_user_ordered(project_id, sort_and_order_column) do
+    query =
+      from t in Task,
+        where: t.project == ^project_id,
+        order_by: ^sort_and_order_column
+
+    Repo.all(query)
+  end
 end

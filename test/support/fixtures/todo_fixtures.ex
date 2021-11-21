@@ -160,4 +160,62 @@ defmodule SimpleTeamTodo.TodoFixtures do
 
     {p1, p2}
   end
+
+  def task_with_order(attrs \\ %{}) do
+    user = user_fixture()
+    project1 = project_fixture()
+
+    {:ok, task1} =
+      attrs
+      |> Enum.into(%{
+        desc: "some desc1",
+        name: "some name1",
+        project: project1.id,
+        creator: user.id,
+        owner: user.id,
+        order_id: 0
+      })
+      |> SimpleTeamTodo.Todo.create_task()
+
+    {:ok, task2} =
+      attrs
+      |> Enum.into(%{
+        desc: "some desc2",
+        name: "some name2",
+        project: project1.id,
+        creator: user.id,
+        owner: user.id,
+        parent: task1.id,
+        order_id: 10000
+      })
+      |> SimpleTeamTodo.Todo.create_task()
+
+    {:ok, task3} =
+      attrs
+      |> Enum.into(%{
+        desc: "some desc3",
+        name: "some name3",
+        project: project1.id,
+        creator: user.id,
+        owner: user.id,
+        parent: task1.id,
+        order_id: 5000
+      })
+      |> SimpleTeamTodo.Todo.create_task()
+
+    {:ok, task4} =
+      attrs
+      |> Enum.into(%{
+        desc: "some desc4",
+        name: "some name4",
+        project: project1.id,
+        creator: user.id,
+        owner: user.id,
+        parent: task1.id,
+        order_id: 7500
+      })
+      |> SimpleTeamTodo.Todo.create_task()
+
+    {project1, [task1, task2, task3, task4]}
+  end
 end

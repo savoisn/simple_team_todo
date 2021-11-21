@@ -1,5 +1,5 @@
 defmodule SimpleTeamTodoWeb.PageControllerTest do
-  use SimpleTeamTodoWeb.ConnCase
+  use SimpleTeamTodoWeb.ConnCase, async: true
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

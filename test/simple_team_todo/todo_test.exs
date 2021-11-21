@@ -1,5 +1,5 @@
 defmodule SimpleTeamTodo.TodoTest do
-  use SimpleTeamTodo.DataCase
+  use SimpleTeamTodo.DataCase, async: true
 
   alias SimpleTeamTodo.Todo
   import SimpleTeamTodo.AccountsFixtures
@@ -145,6 +145,15 @@ defmodule SimpleTeamTodo.TodoTest do
       [task1, task2, task3] = task_with_child()
       assert task2.parent == task1.id
       assert task3.parent == task1.id
+    end
+
+    test "tasks are in the order the user defined" do
+      {project, _} = task_with_order()
+
+      [task1, task2, task3, task4] = Todo.project_tasks_user_ordered(project.id, asc: :order_id)
+      assert task1.order_id < task2.order_id
+      assert task2.order_id < task3.order_id
+      assert task3.order_id < task4.order_id
     end
   end
 end
